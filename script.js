@@ -40,33 +40,28 @@ const myFunc = async () => {
 
         let data = await fetch("https://api.openbrewerydb.org/v1/breweries");
         let res  = await data.json();
-       
+       console.log(res)
         for(i of res){
             let tr = document.createElement('tr')
-            let td = document.createElement('td')
+            let name_td = document.createElement('td')
+            let type_td = document.createElement('td')
+            let add_td = document.createElement('td')
+            let url_td = document.createElement('td')
+            let phone_td = document.createElement('td')
+            
+            name_td.innerText=i.name
+            type_td.innerText=i.brewery_type
+            add_td.innerText=i.address_1
+            url_td.innerText=i.website_url
+            phone_td.innerText=i.phone
 
-
-            td.innerText= Object.values(i).forEach(tableData => {
-                let td = document.createElement('td')
-                // let UpdatdTableData= tableData.map((value)=>{
-                //     let brew_name=value.name;
-                //     let brew_type =value.brewery_type;
-                //     let brew_address = value.address_1;
-                //     let brew_url= value.website_url
-                //     let brew_phone = value.phone;
-                //     return{brew_name,brew_type,brew_address,brew_url,brew_phone}
-                // })
-                td.innerText=tableData;
-                // td.innerText=UpdatdTableData;
-                tr.append(td)
-                console.log(tr)
-            })
+            tr.appendChild(name_td)
+            tr.appendChild(type_td)
+            tr.appendChild(add_td)
+            tr.appendChild(url_td)
+            tr.appendChild(phone_td)
             tbody.appendChild(tr)
         }
-        
-        
-        
-
     } catch (e) {
         console.log(e)
     }
